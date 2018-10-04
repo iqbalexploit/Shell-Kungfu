@@ -1,0 +1,22 @@
+#for i in $(ls */*); do echo $i && cat $i; done
+#ls */*/* | awk 'BEGIN{FS="/"} {print $2}' | sort
+#find ./ -type f -exec sed -i 's/cloud-platform/devops/' {} \;
+#gcloud compute instances list | tail -n+2 | awk '$5 ! /\RUNNING/ || /TERMINATED/ {printf $1,$5}'
+#for i in $( cat github_user.txt ); do tes="$(curl -s https://github.com/$i.keys | tr '\n' ' ')"; echo -n "$i, $tes\n" >> /tmp/github_ssh.csv; done
+#ps aux | grep ssh | grep -v grep | grep -v sshd | awk {'print $2'} | xargs -r kill -9
+
+#See entire packet payload using tcpdump.
+$tcpdump -nnvvXSs 1514 -i <device> <filters>
+
+#Sorts and compare 2 files line by line
+$comm -12 <(sort -u File1) <(sort -u File2)
+
+#Display full tree information of a single process
+$pstree -plants $(pidof -s firefox)
+
+#Backup all databases in a MySQL container
+$cat databases.txt | while read db; do docker exec $container_name bash -c "mysqldump -uroot -p\$MYSQL_ROOT_PASSWORD ${db}" | gzip -9 > $HOME/backups/${db}_`date +%Y%m%d_%H%M%S`.sql.gz; done
+
+#Convert libreoffice files : .odt .odg and other to .pdf
+$find /home/foo/Documents/ -type f -iname "*.odt" -exec libreoffice --headless --convert-to pdf '{}' \;
+
